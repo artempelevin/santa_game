@@ -6,7 +6,7 @@
 #include <SDL2/SDL.h>
 
 class Object{
-private:
+protected:
     SDL_Rect    *rect;     // Coords and sizes
     SDL_Texture *texture;
 public:
@@ -24,6 +24,7 @@ public:
     void setWidth(const int width);
     void setHeight(const int height);
     void setSizes(const int width, const int height);
+    static SDL_Texture* loadTexture(const std::string pathToFile);
     static Object* getObjectFromFile(const std::string pathToFile);
     static Object* getRandomObjectFromDir(const std::string pathToDir);
 };

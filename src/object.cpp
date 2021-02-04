@@ -43,6 +43,22 @@ void Object::setSizes(const int width, const int height){
 }
 
 
+SDL_Texture* Object::loadTexture(const std::string pathToFile){
+    SDL_Surface* surface = IMG_Load(pathToFile.c_str());
+    if(surface == nullptr){
+        std::cout << SDL_GetError() << std::endl;
+        exit(EXIT_FAILURE);
+    }
+
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(Render::getRenderer(), surface);
+    if(texture == nullptr){
+        std::cout << SDL_GetError() << std::endl;
+        exit(EXIT_FAILURE);
+    }
+
+    return texture;
+}
+
 Object* Object::getObjectFromFile(const std::string pathToFile){
     SDL_Surface* surface = IMG_Load(pathToFile.c_str());
     if(surface == nullptr){

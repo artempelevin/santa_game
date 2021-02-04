@@ -4,6 +4,7 @@ project(santa_game LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(EXECUTABLE_OUTPUT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/..")
 
 find_library(SDL2_LIBRARY         SDL2)
 find_library(SDL2_IMAGE_LIBRARY   SDL2_image)
@@ -11,6 +12,8 @@ find_library(SDL2_IMAGE_LIBRARY   SDL2_image)
 add_executable(santa_game      main.cpp
                                buffer.cpp
                                buffer.hpp
+                               button.cpp
+                               button.hpp
                                game.cpp
                                game.hpp
                                level.cpp

@@ -9,6 +9,7 @@ private:
     Level     *level;
     SDL_Event  event;
     bool       is_end = false;
+    static int mouse_coords[2];
 public:
     ~Game();
     void loadLevel();
@@ -16,7 +17,8 @@ public:
     bool isEnd()  const;
     bool checkEvent();
     void handleEvent();
-
+    static int getMouseX();
+    static int getMouseY();
 };
 
 #endif // GAME_HPP

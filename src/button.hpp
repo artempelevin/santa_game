@@ -3,7 +3,7 @@
 
 #include "object.hpp"
 
-class Button: Object{
+class Button: public Object{
 private:
     bool is_pressed = false;
 public:

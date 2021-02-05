@@ -31,6 +31,7 @@ void Window::update() const{
         if(game->checkEvent()){
             game->handleEvent();
             game->render();
+            game->releaseButtons();
         }
         SDL_Delay(10);
     }

@@ -7,8 +7,8 @@
 #include "button.hpp"
 
 enum{
-    X_COORDS,
-    Y_COORDS
+    X_COORD,
+    Y_COORD
 };
 
 Game::Game(){
@@ -42,11 +42,30 @@ bool Game::checkEvent(){
     return SDL_PollEvent(&event);
 }
 
+int Game::getIdPressedButton() const{
+    for(int i = 0; i < MAX_ROOMS_NUMBER; i++){
+        int x  = buttons[i]->getX();         int y  = buttons[i]->getY();
+        int w  = buttons[i]->getWidth();     int h  = buttons[i]->getHeight();
+        int _x = mouse_coords[X_COORD];      int _y = mouse_coords[Y_COORD];
+        if((_x >= x && _x <= x + w) && (_y >= y && _y <= y + h))    return i;   // Return button ID
+    }
+    return -1;
+}
+
+void Game::releaseButtons(){
+    for(int i = 0; i < MAX_ROOMS_NUMBER; i++){
+        buttons[i]->release();
+    }
+}
+
 void  Game::handleEvent(){
     if(event.type == SDL_QUIT)      is_end = true;
     if(event.type == SDL_MOUSEBUTTONDOWN){
-        mouse_coords[X_COORDS] = event.button.x;
-        mouse_coords[Y_COORDS] = event.button.y;
+        mouse_coords[X_COORD] = event.button.x;
+        mouse_coords[Y_COORD] = event.button.y;
+        if(getIdPressedButton() != -1){       // If the button was pressed
+            buttons[getIdPressedButton()]->press();
+        }
     }
 }
 

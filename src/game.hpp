@@ -11,6 +11,8 @@ private:
     SDL_Event  event;
     bool       is_end = false;
     int mouse_coords[2];
+private:
+    int  getIdPressedButton() const;
 public:
     Game();
     ~Game();

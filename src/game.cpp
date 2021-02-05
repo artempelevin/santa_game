@@ -3,6 +3,8 @@
 
 #include "buffer.hpp"
 #include "render.hpp"
+#include "setting.hpp"
+#include "button.hpp"
 
 enum{
     X_COORDS,
@@ -17,7 +19,11 @@ void Game::loadLevel(){
 }
 
 void Game::render() const{
-    Buffer::add(level->getCurrRoom());
+    Buffer::add(level->getCurrRoom());              // Background
+    Button** buttons = level->getButtons();         // Buttons
+    for(int i = 0; i < MAX_ROOMS_NUMBER; i++){
+        Buffer::add((Object*) buttons[i]);
+    }
 
     Render::draw();
     Buffer::clear();

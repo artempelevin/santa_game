@@ -3,20 +3,22 @@
 
 #include "setting.hpp"
 #include "object.hpp"
-
+#include "button.hpp"
 class Level{
 private:
     //Children childrens[MAX_ROOMS_NUMBER];
     Object*     rooms[MAX_ROOMS_NUMBER];
     Object*     gifts[MAX_ROOMS_NUMBER];
     std::string stories[MAX_ROOMS_NUMBER];
+    Button*     buttons[MAX_ROOMS_NUMBER];
     /* Other data */
     int room_number = 0;
 public:
     Level();
-    Object* getCurrRoom()      const;
-    Object* getCurrGift()      const;
-    std::string getCurrstorie()const;
+    Object*     getCurrRoom()       const;
+    Object*     getCurrGift()       const;
+    std::string getCurrstorie()     const;
+    Button**    getButtons();
 };
 
 #endif // LEVEL_HPP

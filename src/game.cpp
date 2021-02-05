@@ -12,12 +12,12 @@ enum{
 };
 
 Game::Game(){
-
+    // Load buttons
     SDL_Texture* button_texture = Object::loadTexture("data/button.jpg");
     for(int i = 0; i < MAX_ROOMS_NUMBER; i++){
         buttons[i] = new Button(i*90, 550, 90, 50, button_texture);
     }
-
+    task_canvas = new Object(600, 20, 300, 450, Object::loadTexture("data/бумага.png"));
 }
 
 void Game::loadLevel(){
@@ -27,7 +27,7 @@ void Game::loadLevel(){
 
 void Game::render() const{
     Buffer::add(level->getCurrRoom());              // Background
-
+    Buffer::add(task_canvas);                       // Task_canvas
     for(int i = 0; i < MAX_ROOMS_NUMBER; i++){      // Buttons
         Buffer::add((Object*) buttons[i]);
     }

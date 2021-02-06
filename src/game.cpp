@@ -15,9 +15,17 @@ Game::Game(){
     // Load buttons
     SDL_Texture* button_texture = Object::loadTexture("data/button.jpg");
     for(int i = 0; i < MAX_ROOMS_NUMBER; i++){
-        buttons[i] = new Button(i*90, 550, 90, 50, button_texture);
+        buttons[i] = new Button(i*BUTTON_WIDTH,
+                                SCREEN_HEIGHT-BUTTON_HEIGHT,
+                                BUTTON_WIDTH,
+                                BUTTON_HEIGHT,
+                                button_texture);
     }
-    task_canvas = new Object(600, 20, 300, 450, Object::loadTexture("data/бумага.png"));
+    task_canvas = new Object(TASK_X,
+                             TASK_Y,
+                             TASK_WIDTH,
+                             TASK_HEIGHT,
+                             Object::loadTexture("data/бумага.png"));
 }
 
 void Game::loadLevel(){

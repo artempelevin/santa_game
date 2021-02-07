@@ -30,6 +30,12 @@ Game::Game(){
                              Object::loadTexture("data/бумага.png"));
 }
 
+Game::~Game(){
+    delete level;
+    for(int i = 0; i < MAX_ROOMS_NUMBER; i++)   delete buttons[i];
+    delete task_canvas;
+}
+
 void Game::loadLevel(){
     if(!level)      delete level;       // Free the previous level
     level = new Level();

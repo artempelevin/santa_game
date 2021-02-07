@@ -1,10 +1,11 @@
 #include "text.hpp"
 #include "render.hpp"
+#include "setting.hpp"
 
 TTF_Font* Text::font = nullptr;
-SDL_Color Text::color = {0, 0, 0, 255};
+SDL_Color Text::color = FONT_COLOR;
 
-void Text::loadFont(std::string pathToFont, int fontSize, int color_r, int color_g, int color_b){
+void Text::loadFont(std::string pathToFont, int fontSize){
     if(TTF_Init() == -1){
         std::cout << SDL_GetError() << std::endl;
         exit(EXIT_FAILURE);
@@ -15,9 +16,6 @@ void Text::loadFont(std::string pathToFont, int fontSize, int color_r, int color
         std::cout << SDL_GetError() << std::endl;
         exit(EXIT_FAILURE);
     }
-    color.r = color_r;
-    color.g = color_g;
-    color.b = color_b;
 }
 
 Text::Text(const int x, const int y, const std::string text): x(x), y(y), text(text) {}

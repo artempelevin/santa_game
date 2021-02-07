@@ -12,13 +12,13 @@ enum{
 };
 
 Game::Game(){
-    Text::loadFont("data/fonts/Alice-Regular.ttf", 25, 0, 0, 0);
+    Text::loadFont("data/fonts/Alice-Regular.ttf", 25);
 
     // Load buttons
     SDL_Texture* button_texture = Object::loadTexture("data/button.jpg");
     for(int i = 0; i < MAX_ROOMS_NUMBER; i++){
-        buttons[i] = new Button(i*BUTTON_WIDTH,
-                                SCREEN_HEIGHT-BUTTON_HEIGHT,
+        buttons[i] = new Button(BUTTON_X + i*BUTTON_WIDTH,
+                                BUTTON_Y,
                                 BUTTON_WIDTH,
                                 BUTTON_HEIGHT,
                                 button_texture);

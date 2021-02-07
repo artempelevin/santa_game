@@ -13,7 +13,7 @@ class Text{
     int y;
     std::string text;
 public:
-    static void loadFont(std::string pathToFont, int fontSize, int color_r, int color_g, int color_b);
+    static void loadFont(std::string pathToFont, int fontSize);
     Text(const int x, const int y, const std::string text);
     Object* getObject() const;
 };

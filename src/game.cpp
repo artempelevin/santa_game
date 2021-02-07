@@ -5,13 +5,15 @@
 #include "render.hpp"
 #include "setting.hpp"
 #include "button.hpp"
-
+#include "text.hpp"
 enum{
     X_COORD,
     Y_COORD
 };
 
 Game::Game(){
+    Text::loadFont("data/fonts/Alice-Regular.ttf", 25, 0, 0, 0);
+
     // Load buttons
     SDL_Texture* button_texture = Object::loadTexture("data/button.jpg");
     for(int i = 0; i < MAX_ROOMS_NUMBER; i++){
@@ -71,8 +73,9 @@ void  Game::handleEvent(){
     if(event.type == SDL_MOUSEBUTTONDOWN){
         mouse_coords[X_COORD] = event.button.x;
         mouse_coords[Y_COORD] = event.button.y;
-        if(getIdPressedButton() != -1){       // If the button was pressed
-            buttons[getIdPressedButton()]->press();
+        int button_id = getIdPressedButton();
+        if(button_id!= -1){       // If the button was pressed
+            buttons[button_id]->press();
         }
     }
 }

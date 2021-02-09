@@ -2,6 +2,7 @@
 
 #include "kid.hpp"
 #include "file.hpp"
+#include "setting.hpp"
 
 struct Story{
     std::string story_text;
@@ -22,15 +23,30 @@ Story loadStoryFromFile(const std::string pathToFile){
 
 Kid::Kid(){
     gender = std::rand() % 2;       // 0 - BOY; 1 - GIRL
-    std::string genderStr = (gender == GIRL) ? "boys": "girls";
-    std::string fileName = File::getRandomFileNameFromDir("data/stories/" + genderStr + "/");
+    std::string genderStr = (gender == GIRL) ? "boys": "girls"; // Get dir name
+    std::string fileName = File::getRandomFileNameFromDir("data/stories/" + genderStr);
     Story allStory = loadStoryFromFile("data/stories/" + genderStr + "/" + fileName);
 
-    name  = File::getRandomLineFromFile("data/names/"+ genderStr + "/names.txt");
+
+    std::string pathToName = "data/names/"+ genderStr + "/names" + TEXT_FORMAT;
+    std::string pathToGift = "data/gifts/" + allStory.gift_type + IMAGE_FORMAT;
+    std::string pathToKid  = "data/kids/" + genderStr + "/" +
+                             File::getRandomFileNameFromDir("data/kids/" + genderStr);
+
+    name  = File::getRandomLineFromFile(pathToName);
     story = allStory.story_text;
     gift  = allStory.gift_type;
-    gitf_object = Object::getObjectFromFile("data/gifts/" + gift + ".jpg");
-    kid_object  = Object::getRandomObjectFromDir("data/kids/" + genderStr);
+    gitf_object = new Object(GIFT_X,
+                             GIFT_Y,
+                             GIFT_WIDTH,
+                             GIFT_HEIGHT,
+                             Object::loadTexture(pathToGift));
+    kid_object  = new Object(KID_X,
+                             KID_Y,
+                             KID_WIDTH,
+                             KID_HEIGHT,
+                             Object::loadTexture(pathToKid));
+
 }
 
 Kid::~Kid(){

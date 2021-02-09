@@ -3,6 +3,7 @@
 
 #include "object.hpp"
 #include "render.hpp"
+#include "file.hpp"
 
 Object::Object(const int x, const int y, const int w, const int h, SDL_Texture *const _texture){
     rect = new SDL_Rect{x, y, w, h};
@@ -77,44 +78,10 @@ Object* Object::getObjectFromFile(const std::string pathToFile){
     return object;
 }
 
-int getNumberOfFilesInDirectory(const std::string pathToDir){
-    std::string command = "ls " + pathToDir + " | wc";
-    FILE* result = popen(command.c_str(), "r");
-    std::string number;
-    while(!feof(result)){                   // While not file end
-        char c;
-        // We take only one number out of three!
-        if((c = fgetc(result)) != ' '){
-            while(c != ' '){
-                number += c;
-                c = fgetc(result);
-            }
-            pclose(result);
-            return std::stoi(number);
-        }
-    }
-    pclose(result);
-    return -1;
-}
 
 Object* Object::getRandomObjectFromDir(const std::string pathToDir){
-    std::string command = "ls " + pathToDir;
-    FILE* textures = popen(command.c_str(), "r");   // Get the all files in a directory
-    int numbersOfFiles = getNumberOfFilesInDirectory(pathToDir);   //Quantity the files in a directory
-    int numberOfFile = std::rand() % numbersOfFiles;  // Index of the random file
-    std::string file_name;
-
-    char c;
-    // Skip other files
-    for(int i = 0; i < numberOfFile; i++){
-        while((c = fgetc(textures)) != '\n');
-    }
-    // Get's file
-    while((c = fgetc(textures)) != '\n' && (c != EOF)){
-        file_name += c;
-    }
-    pclose(textures);
-
+    std::string file_name  = File::getRandomFileNameFromDir(pathToDir);
     std::string pathToFile = pathToDir + "/" + file_name;
+
     return getObjectFromFile(pathToFile);
 }

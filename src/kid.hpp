@@ -24,7 +24,7 @@ public:
     std::string getStory()          const;
     std::string getGift()           const;
     Object*     getGiftObject()     const;
-    Object*     getKidObject() const;
+    Object*     getKidObject()      const;
 };
 
 #endif // CHILDREN_HPP

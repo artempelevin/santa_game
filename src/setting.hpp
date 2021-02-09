@@ -17,7 +17,7 @@
 #define SCREEN_HEIGHT       600
 
 #define BUTTON_WIDTH        SCREEN_WIDTH/MAX_ROOMS_NUMBER
-#define BUTTON_HEIGHT       50
+#define BUTTON_HEIGHT       BUTTON_WIDTH
 #define BUTTON_X            0
 #define BUTTON_Y            SCREEN_HEIGHT - BUTTON_HEIGHT
 
@@ -31,10 +31,11 @@
 #define KID_X               200
 #define KID_Y               200
 
-#define GIFT_WIDTH           BUTTON_WIDTH
-#define GIFT_HEIGHT          BUTTON_HEIGHT
-#define GIFT_X               BUTTON_X
-#define GIFT_Y               BUTTON_Y
+#define GIFT_INDENT         5
+#define GIFT_WIDTH          BUTTON_WIDTH - GIFT_INDENT
+#define GIFT_HEIGHT         BUTTON_HEIGHT - GIFT_INDENT
+#define GIFT_X              BUTTON_X + GIFT_INDENT
+#define GIFT_Y              BUTTON_Y + GIFT_INDENT
 
 
 

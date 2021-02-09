@@ -43,13 +43,24 @@ void Game::loadLevel(){
 
 void Game::render() const{
     Buffer::add(level->getCurrRoom());              // Background
+    Buffer::add(level->getCurrKid());               // Kid
     Buffer::add(task_canvas);                       // Task_canvas
-    for(int i = 0; i < MAX_ROOMS_NUMBER; i++){      // Buttons
+
+    Object** gifts = level->getGifts();
+    for(int i = 0; i < MAX_ROOMS_NUMBER; i++){
+        // Buttons
         Buffer::add((Object*) buttons[i]);
+
+        // Gifts
+        gifts[i]->setX(i*GIFT_WIDTH);
+        Buffer::add(gifts[i]);
     }
+
 
     Render::draw();
     Buffer::clear();
+
+    delete [] gifts;
 }
 
 bool Game::isEnd() const        {return is_end;}

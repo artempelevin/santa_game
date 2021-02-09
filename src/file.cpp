@@ -1,4 +1,6 @@
 #include <iostream>
+#include <fstream>
+#include <vector>
 
 #include "file.hpp"
 
@@ -42,4 +44,18 @@ std::string File::getRandomFileNameFromDir(const std::string pathToDir){
     pclose(files);
 
     return file_name;
+}
+
+std::string File::getRandomLineFromFile(const std::string pathToFile){
+    std::vector<std::string> text;
+    std::ifstream input_file(pathToFile);
+    std::string line;
+    if(input_file.is_open()){
+        while(getline(input_file, line)){
+            text.push_back(line);
+        }
+
+    }
+    input_file.close();
+    return text[std::rand() % text.size()];
 }

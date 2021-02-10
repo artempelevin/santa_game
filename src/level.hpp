@@ -12,7 +12,7 @@ private:
     Object*     rooms[MAX_ROOMS_NUMBER];
     Kid*        kids[MAX_ROOMS_NUMBER];
     /* Other data */
-    int room_number = 0;
+    int room_number = 0;            // By default - the first room
 public:
     Level();
     ~Level();
@@ -21,6 +21,8 @@ public:
     Object*     getCurrKid()        const;
     Object*     getCurrName()       const;
     std::string getCurrStorie()     const;
+    void prevRoom();
+    void nextRoom();
 };
 
 #endif // LEVEL_HPP

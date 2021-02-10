@@ -115,6 +115,8 @@ void  Game::handleEvent(){
         int button_id = getIdPressedButton();
         if(button_id!= -1){       // If the button was pressed
             buttons[button_id]->press();
+            if(button_id == PREV_BUTTON_ID) level->prevRoom();
+            if(button_id == NEXT_BUTTON_ID) level->nextRoom();
         }
     }
 }

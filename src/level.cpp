@@ -28,3 +28,11 @@ Object**    Level::getGifts() const {
     }
     return gifts;
 }
+
+void Level::prevRoom(){
+    if(room_number)     room_number--;
+}
+void Level::nextRoom(){
+    if(room_number < MAX_ROOMS_NUMBER-1)     room_number++;
+}
+

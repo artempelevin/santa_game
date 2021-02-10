@@ -65,6 +65,7 @@ void Game::render() const{
     Buffer::add((Object*) prev_level_button);       // Prev_button
     Buffer::add((Object*) next_level_button);       // Next_button
     Buffer::add(level->getCurrKid());               // Kid
+    Buffer::add(level->getCurrName());              // Name
     Buffer::add(task_canvas);                       // Task_canvas
 
     Object** gifts = level->getGifts();

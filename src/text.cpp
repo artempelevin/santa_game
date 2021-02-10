@@ -21,7 +21,7 @@ void Text::loadFont(std::string pathToFont, int fontSize){
 Text::Text(const int x, const int y, const std::string text): x(x), y(y), text(text) {}
 
 Object* Text::getObject() const {
-    SDL_Surface *surf = TTF_RenderText_Blended(font, text.c_str(), color);
+    SDL_Surface *surf = TTF_RenderUTF8_Blended(font, text.c_str(), color);
     if(surf == nullptr){
         std::cout << SDL_GetError() << std::endl;
         exit(EXIT_FAILURE);

@@ -46,6 +46,12 @@ Kid::Kid(){
                              KID_WIDTH,
                              KID_HEIGHT,
                              Object::loadTexture(pathToKid));
+    Text* name_text = new Text(KID_NAME_X,
+                               KID_NAME_Y,
+                               name);
+    name_object = name_text->getObject();
+
+    delete name_text;
 
 }
 
@@ -59,3 +65,4 @@ std::string Kid::getStory()          const     {return story;}
 std::string Kid::getGift()           const     {return gift;}
 Object*     Kid::getGiftObject()     const     {return gitf_object;}
 Object*     Kid::getKidObject()      const     {return kid_object;}
+Object*     Kid::getNameObject()     const     {return name_object;}

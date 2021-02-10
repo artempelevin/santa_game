@@ -42,6 +42,10 @@
 #define KID_X               30
 #define KID_Y               BUTTON_WIDTH + 10
 
+#define KID_NAME_INDENT     10
+#define KID_NAME_X          KID_X
+#define KID_NAME_Y          KID_Y - KID_NAME_INDENT
+
 #define GIFT_WIDTH          BUTTON_WIDTH
 #define GIFT_HEIGHT         BUTTON_HEIGHT
 #define GIFT_X              BUTTON_X

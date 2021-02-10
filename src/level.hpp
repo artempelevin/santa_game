@@ -19,6 +19,7 @@ public:
     Object**    getGifts()          const;
     Object*     getCurrRoom()       const;
     Object*     getCurrKid()        const;
+    Object*     getCurrName()       const;
     std::string getCurrStorie()     const;
 };
 

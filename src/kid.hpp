@@ -3,6 +3,7 @@
 
 #include <string>
 #include "object.hpp"
+#include "text.hpp"
 
 enum{
     BOY,
@@ -17,6 +18,7 @@ private:
     std::string gift;
     Object*     gitf_object;
     Object*     kid_object;
+    Object*     name_object;
 public:
     Kid();
     ~Kid();
@@ -25,6 +27,7 @@ public:
     std::string getGift()           const;
     Object*     getGiftObject()     const;
     Object*     getKidObject()      const;
+    Object*     getNameObject()     const;
 };
 
 #endif // CHILDREN_HPP

@@ -11,11 +11,33 @@ enum{
     Y_COORD
 };
 
+enum{
+    PREV_BUTTON_ID = MAX_ROOMS_NUMBER,
+    NEXT_BUTTON_ID = MAX_ROOMS_NUMBER + 1
+};
+
 Game::Game(){
     Text::loadFont("data/fonts/Alice-Regular.ttf", 25);
 
+    task_canvas = new Object(TASK_X,
+                             TASK_Y,
+                             TASK_WIDTH,
+                             TASK_HEIGHT,
+                             Object::loadTexture("data/бумага.png"));
+
     // Load buttons
-    SDL_Texture* button_texture = Object::loadTexture("data/button.jpg");
+    SDL_Texture* button_texture = Object::loadTexture("data/button.png");
+    prev_level_button = new Button(PREV_BUTTON_X,
+                                   PREV_BUTTON_Y,
+                                   PREV_BUTTON_WIDTH,
+                                   PREV_BUTTON_HEIGHT,
+                                   button_texture);
+
+    next_level_button = new Button(NEXT_BUTTON_X,
+                                   NEXT_BUTTON_Y,
+                                   NEXT_BUTTON_WIDTH,
+                                   NEXT_BUTTON_HEIGHT,
+                                   button_texture);
     for(int i = 0; i < MAX_ROOMS_NUMBER; i++){
         buttons[i] = new Button(BUTTON_X + i*BUTTON_WIDTH,
                                 BUTTON_Y,
@@ -23,11 +45,8 @@ Game::Game(){
                                 BUTTON_HEIGHT,
                                 button_texture);
     }
-    task_canvas = new Object(TASK_X,
-                             TASK_Y,
-                             TASK_WIDTH,
-                             TASK_HEIGHT,
-                             Object::loadTexture("data/бумага.png"));
+    buttons[MAX_ROOMS_NUMBER]     = prev_level_button;
+    buttons[MAX_ROOMS_NUMBER + 1] = next_level_button;
 }
 
 Game::~Game(){
@@ -43,6 +62,8 @@ void Game::loadLevel(){
 
 void Game::render() const{
     Buffer::add(level->getCurrRoom());              // Background
+    Buffer::add((Object*) prev_level_button);       // Prev_button
+    Buffer::add((Object*) next_level_button);       // Next_button
     Buffer::add(level->getCurrKid());               // Kid
     Buffer::add(task_canvas);                       // Task_canvas
 
@@ -70,7 +91,7 @@ bool Game::checkEvent(){
 }
 
 int Game::getIdPressedButton() const{
-    for(int i = 0; i < MAX_ROOMS_NUMBER; i++){
+    for(int i = 0; i < MAX_ROOMS_NUMBER + 2; i++){
         int x  = buttons[i]->getX();         int y  = buttons[i]->getY();
         int w  = buttons[i]->getWidth();     int h  = buttons[i]->getHeight();
         int _x = mouse_coords[X_COORD];      int _y = mouse_coords[Y_COORD];

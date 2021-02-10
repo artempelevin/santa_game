@@ -7,7 +7,9 @@
 class Game{
 private:
     Level*      level;
-    Button*     buttons[MAX_ROOMS_NUMBER];
+    Button*     buttons[MAX_ROOMS_NUMBER + 2];      // +2 -> prev_button and next_button
+    Button*     next_level_button;
+    Button*     prev_level_button;
     Object*     task_canvas;
     SDL_Event   event;
     bool        is_end = false;

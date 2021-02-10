@@ -13,6 +13,10 @@ Render::Render(SDL_Window* window){
     }
 }
 
+Render::~Render(){
+    SDL_DestroyRenderer(renderer);
+}
+
 SDL_Renderer* Render::getRenderer()     {return  renderer;}
 
 void Render::draw(){
@@ -24,6 +28,3 @@ void Render::draw(){
     SDL_RenderClear(renderer);
 }
 
-Render::~Render(){
-    SDL_DestroyRenderer(renderer);
-}

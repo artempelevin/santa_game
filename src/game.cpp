@@ -27,6 +27,7 @@ Game::Game(){
 
     // Load buttons
     SDL_Texture* button_texture = Object::loadTexture("data/button.png");
+    touch_button                = Object::loadTexture("data/touch_button.png");
     prev_level_button = new Button(PREV_BUTTON_X,
                                    PREV_BUTTON_Y,
                                    PREV_BUTTON_WIDTH,
@@ -72,7 +73,13 @@ void Game::render() const{
     for(int i = 0; i < MAX_ROOMS_NUMBER; i++){
         // Buttons
         Buffer::add((Object*) buttons[i]);
-
+        if(buttons[i]->isPressed()){
+            Buffer::add(BUTTON_X + BUTTON_WIDTH*i,
+                        BUTTON_Y,
+                        BUTTON_WIDTH,
+                        BUTTON_HEIGHT,
+                        touch_button);
+        }
         // Gifts
         gifts[i]->setX(i*GIFT_WIDTH);
         Buffer::add(gifts[i]);
@@ -101,12 +108,6 @@ int Game::getIdPressedButton() const{
     return -1;
 }
 
-void Game::releaseButtons(){
-    for(int i = 0; i < MAX_ROOMS_NUMBER; i++){
-        buttons[i]->release();
-    }
-}
-
 void  Game::handleEvent(){
     if(event.type == SDL_QUIT)      is_end = true;
     if(event.type == SDL_MOUSEBUTTONDOWN){
@@ -114,7 +115,9 @@ void  Game::handleEvent(){
         mouse_coords[Y_COORD] = event.button.y;
         int button_id = getIdPressedButton();
         if(button_id!= -1){       // If the button was pressed
-            buttons[button_id]->press();
+            if(buttons[button_id]->isPressed()) buttons[button_id]->release();
+            else                                buttons[button_id]->press();
+
             if(button_id == PREV_BUTTON_ID) level->prevRoom();
             if(button_id == NEXT_BUTTON_ID) level->nextRoom();
         }

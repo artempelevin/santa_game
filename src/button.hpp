@@ -10,7 +10,6 @@ public:
     Button(const int x, const int y, const int w, const int h, SDL_Texture *const _texture): \
         Object(x, y, w, h, _texture) {}
     void press();
-    void release();
     bool isPressed() const;
 };
 

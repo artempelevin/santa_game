@@ -115,8 +115,7 @@ void  Game::handleEvent(){
         mouse_coords[Y_COORD] = event.button.y;
         int button_id = getIdPressedButton();
         if(button_id!= -1){       // If the button was pressed
-            if(buttons[button_id]->isPressed()) buttons[button_id]->release();
-            else                                buttons[button_id]->press();
+            buttons[button_id]->press();
 
             if(button_id == PREV_BUTTON_ID) level->prevRoom();
             if(button_id == NEXT_BUTTON_ID) level->nextRoom();

@@ -69,6 +69,11 @@ void Game::render() const{
     Buffer::add(level->getCurrName());              // Name
     Buffer::add(task_canvas);                       // Task_canvas
 
+    std::list<Object*> story = level->getCurrStorie();
+    for(auto iter = story.cbegin(); iter != story.cend(); iter++){
+        Buffer::add(*iter);
+    }
+
     Object** gifts = level->getGifts();
     for(int i = 0; i < MAX_ROOMS_NUMBER; i++){
         // Buttons

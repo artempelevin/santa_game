@@ -20,7 +20,7 @@ public:
     Object*                 getCurrRoom()       const;
     Object*                 getCurrKid()        const;
     Object*                 getCurrName()       const;
-    std::list<std::string>  getCurrStorie()     const;
+    std::list<Object*>      getCurrStorie()     const;
     void prevRoom();
     void nextRoom();
 };

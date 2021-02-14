@@ -19,7 +19,7 @@ Level::~Level(){
 
 Object*                Level::getCurrRoom()    const   {return rooms[room_number];}
 Object*                Level::getCurrKid()     const   {return kids[room_number]->getKidObject();}
-std::list<std::string> Level::getCurrStorie()  const   {return kids[room_number]->getStory();}
+std::list<Object*>     Level::getCurrStorie()  const   {return kids[room_number]->getStory();}
 Object*                Level::getCurrName()    const   {return kids[room_number]->getNameObject();}
 Object**               Level::getGifts() const {
     Object** gifts = new Object*[MAX_ROOMS_NUMBER];

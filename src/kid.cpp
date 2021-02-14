@@ -3,6 +3,7 @@
 #include "kid.hpp"
 #include "file.hpp"
 #include "setting.hpp"
+#include "text.hpp"
 
 struct Story{
     std::list<std::string> text_lines;
@@ -50,7 +51,15 @@ Kid::Kid(){
                              File::getRandomFileNameFromDir("data/kids/" + genderStr);
 
     name  = File::getRandomLineFromFile(pathToName);
-    story = allStory.text_lines;
+
+    // Get the lines of the story text
+    int i = 0;
+    for(auto iter = allStory.text_lines.begin(); iter != allStory.text_lines.end(); iter++){
+        Text text(TEXT_X, TEXT_Y + TEXT_DISTANCE*i, *iter);
+        story.push_back(text.getObject());
+        i++;
+    }
+
     gift  = allStory.gift_type;
     gitf_object = new Object(GIFT_X,
                              GIFT_Y,
@@ -77,7 +86,7 @@ Kid::~Kid(){
 }
 
 std::string             Kid::getName()           const     {return name;}
-std::list<std::string>  Kid::getStory()          const     {return story;}
+std::list<Object*>      Kid::getStory()          const     {return story;}
 std::string             Kid::getGift()           const     {return gift;}
 Object*                 Kid::getGiftObject()     const     {return gitf_object;}
 Object*                 Kid::getKidObject()      const     {return kid_object;}

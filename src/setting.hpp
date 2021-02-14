@@ -26,6 +26,11 @@
 #define TASK_X              SCREEN_WIDTH  - (TASK_WIDTH + 20)
 #define TASK_Y              10
 
+#define TEXT_DISTANCE       10
+#define TEXT_INDENT         20
+#define TEXT_X              TASK_X + TEXT_INDENT
+#define TEXT_Y              TASK_Y + TEXT_INDENT
+
 #define BUTTON_INDENT       6
 #define PREV_BUTTON_WIDTH   TASK_WIDTH/2 - BUTTON_INDENT/2
 #define PREV_BUTTON_HEIGHT  35

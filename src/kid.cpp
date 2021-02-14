@@ -5,18 +5,34 @@
 #include "setting.hpp"
 
 struct Story{
-    std::string story_text;
-    std::string gift_type;
+    std::list<std::string> text_lines;
+    std::string  gift_type;
 };
 
 Story loadStoryFromFile(const std::string pathToFile){
     Story story = {};
 
     std::ifstream input_file(pathToFile);
-    if(input_file.is_open()){
-        getline(input_file, story.story_text);      // The first line is always a story
-        getline(input_file, story.gift_type);       // The second line is always a gift_type
-    }
+    std::string line;
+    char sym = 0;
+
+    do{              // We get all the lines except the line with the gift name
+        input_file.get(sym);
+        if(sym != '\n' && sym != ';'){
+            line += sym;
+        }
+        else {
+            story.text_lines.push_back(line);
+            line.clear();
+        }
+
+    } while(sym != ';');
+
+    // Get the gift name
+    getline(input_file, line);      // Skip the old line
+    getline(input_file, line);
+    story.gift_type = line;
+
     input_file.close();
     return story;
 }
@@ -34,7 +50,7 @@ Kid::Kid(){
                              File::getRandomFileNameFromDir("data/kids/" + genderStr);
 
     name  = File::getRandomLineFromFile(pathToName);
-    story = allStory.story_text;
+    story = allStory.text_lines;
     gift  = allStory.gift_type;
     gitf_object = new Object(GIFT_X,
                              GIFT_Y,
@@ -60,9 +76,9 @@ Kid::~Kid(){
     delete kid_object;
 }
 
-std::string Kid::getName()           const     {return name;}
-std::string Kid::getStory()          const     {return story;}
-std::string Kid::getGift()           const     {return gift;}
-Object*     Kid::getGiftObject()     const     {return gitf_object;}
-Object*     Kid::getKidObject()      const     {return kid_object;}
-Object*     Kid::getNameObject()     const     {return name_object;}
+std::string             Kid::getName()           const     {return name;}
+std::list<std::string>  Kid::getStory()          const     {return story;}
+std::string             Kid::getGift()           const     {return gift;}
+Object*                 Kid::getGiftObject()     const     {return gitf_object;}
+Object*                 Kid::getKidObject()      const     {return kid_object;}
+Object*                 Kid::getNameObject()     const     {return name_object;}

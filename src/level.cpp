@@ -17,11 +17,11 @@ Level::~Level(){
     }
 }
 
-Object*     Level::getCurrRoom()    const   {return rooms[room_number];}
-Object*     Level::getCurrKid()     const   {return kids[room_number]->getKidObject();}
-std::string Level::getCurrStorie()  const   {return kids[room_number]->getStory();}
-Object*     Level::getCurrName()    const   {return kids[room_number]->getNameObject();}
-Object**    Level::getGifts() const {
+Object*                Level::getCurrRoom()    const   {return rooms[room_number];}
+Object*                Level::getCurrKid()     const   {return kids[room_number]->getKidObject();}
+std::list<std::string> Level::getCurrStorie()  const   {return kids[room_number]->getStory();}
+Object*                Level::getCurrName()    const   {return kids[room_number]->getNameObject();}
+Object**               Level::getGifts() const {
     Object** gifts = new Object*[MAX_ROOMS_NUMBER];
     for(int i = 0; i < MAX_ROOMS_NUMBER; i++){
         gifts[i] = kids[i]->getGiftObject();

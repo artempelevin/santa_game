@@ -16,11 +16,11 @@ private:
 public:
     Level();
     ~Level();
-    Object**    getGifts()          const;
-    Object*     getCurrRoom()       const;
-    Object*     getCurrKid()        const;
-    Object*     getCurrName()       const;
-    std::string getCurrStorie()     const;
+    Object**                getGifts()          const;
+    Object*                 getCurrRoom()       const;
+    Object*                 getCurrKid()        const;
+    Object*                 getCurrName()       const;
+    std::list<std::string>  getCurrStorie()     const;
     void prevRoom();
     void nextRoom();
 };

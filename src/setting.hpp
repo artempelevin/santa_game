@@ -2,8 +2,9 @@
 #define SETTING_HPP
 
 /* ---------------------------- COLORS --------------------------- */
-#define FONT_COLOR {0, 0, 0, 255}
-
+#define FONT_COLOR          {0, 0, 0, 255}
+#define FONT_SIZE           16
+#define FONT_DISTANCE       20
 /* --------------------------- FORMATS --------------------------- */
 #define IMAGE_FORMAT        ".png"
 #define TEXT_FORMAT         ".txt"
@@ -26,7 +27,6 @@
 #define TASK_X              SCREEN_WIDTH  - (TASK_WIDTH + 20)
 #define TASK_Y              10
 
-#define TEXT_DISTANCE       10
 #define TEXT_INDENT         20
 #define TEXT_X              TASK_X + TEXT_INDENT
 #define TEXT_Y              TASK_Y + TEXT_INDENT

@@ -13,6 +13,8 @@ private:
     Kid*        kids[MAX_ROOMS_NUMBER];
     /* Other data */
     int room_number = 0;            // By default - the first room
+private:
+    void                    placingGifts();
 public:
     Level();
     ~Level();

@@ -23,6 +23,7 @@ private:
 public:
     Kid();
     ~Kid();
+    void                    setGiftObjectX(const int x);
     std::string             getName()           const;
     std::list<Object*>      getStory()          const;
     std::string             getGift()           const;

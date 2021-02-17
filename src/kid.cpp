@@ -55,7 +55,7 @@ Kid::Kid(){
     // Get the lines of the story text
     int i = 0;
     for(auto iter = allStory.text_lines.begin(); iter != allStory.text_lines.end(); iter++){
-        Text text(TEXT_X, TEXT_Y + TEXT_DISTANCE*i, *iter);
+        Text text(TEXT_X, TEXT_Y + FONT_DISTANCE*i, *iter);
         story.push_back(text.getObject());
         i++;
     }
@@ -85,6 +85,7 @@ Kid::~Kid(){
     delete kid_object;
 }
 
+void                    Kid::setGiftObjectX(const int x)   {gitf_object->setX(x);}
 std::string             Kid::getName()           const     {return name;}
 std::list<Object*>      Kid::getStory()          const     {return story;}
 std::string             Kid::getGift()           const     {return gift;}

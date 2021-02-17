@@ -9,11 +9,25 @@ Level::Level(){
         rooms[i] = Object::getRandomObjectFromDir("/home/artem/C++/santa_game/data/backgrounds/");
         kids[i]  = new Kid();
     }
+    placingGifts();
 }
 
 Level::~Level(){
     for(int i = 0; i < MAX_ROOMS_NUMBER; i++){
         delete kids[i];
+    }
+}
+
+void Level::placingGifts(){
+    int x_coords[MAX_ROOMS_NUMBER] = {};
+    for(int i = 0; i < MAX_ROOMS_NUMBER; i++)   x_coords[i] = GIFT_X + GIFT_WIDTH * i;
+    for(int i = 0; i < MAX_ROOMS_NUMBER; i++){
+        int index;
+        do{
+            index = std::rand() % MAX_ROOMS_NUMBER;
+        } while(x_coords[index] == -1);
+        kids[i]->setGiftObjectX(x_coords[index]);
+        x_coords[index] = -1;
     }
 }
 

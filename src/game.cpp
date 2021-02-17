@@ -17,7 +17,7 @@ enum{
 };
 
 Game::Game(){
-    Text::loadFont("data/fonts/Alice-Regular.ttf", 25);
+    Text::loadFont("data/fonts/Alice-Regular.ttf", FONT_SIZE);
 
     task_canvas = new Object(TASK_X,
                              TASK_Y,
@@ -75,9 +75,13 @@ void Game::render() const{
     }
 
     Object** gifts = level->getGifts();
-    for(int i = 0; i < MAX_ROOMS_NUMBER; i++){
-        // Buttons
+    for(int i = 0; i < MAX_ROOMS_NUMBER; i++){      // Buttons
         Buffer::add((Object*) buttons[i]);
+    }
+    for(int i = 0; i < MAX_ROOMS_NUMBER; i++){      // Gifts
+        Buffer::add(gifts[i]);
+    }
+    for(int i = 0; i < MAX_ROOMS_NUMBER; i++){      // Press buttons
         if(buttons[i]->isPressed()){
             Buffer::add(BUTTON_X + BUTTON_WIDTH*i,
                         BUTTON_Y,
@@ -85,11 +89,7 @@ void Game::render() const{
                         BUTTON_HEIGHT,
                         touch_button);
         }
-        // Gifts
-        gifts[i]->setX(i*GIFT_WIDTH);
-        Buffer::add(gifts[i]);
     }
-
 
     Render::draw();
     Buffer::clear();
